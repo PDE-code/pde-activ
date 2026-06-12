@@ -1,5 +1,7 @@
 # ACTIV · Application de démonstration
 
+## 🔗 [→ Ouvrir l'application](https://pde-code.github.io/pde-activ/)
+
 Application support d'un mémoire de Master 2 CCA consacré à l'audit des
 immobilisations incorporelles en cours (frais de développement, compte 232).
 
