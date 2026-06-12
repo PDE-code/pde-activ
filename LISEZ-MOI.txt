@@ -1,0 +1,93 @@
+ACTIV · Logiciel d'audit des immobilisations incorporelles en cours (R&D)
+Mémoire M2 CCA · Pablo De Oliveira
+======================================================================
+
+L'accueil ACTIV (« ACTIV.html ») est le POINT D'ENTRÉE UNIQUE de la
+suite (Décision, Risques, Programme, Dossier). C'est lui qui crée vos
+engagements, les liste, les rouvre, les importe et les supprime ; les quatre
+modules s'ouvrent depuis lui, directement sur le dossier de l'engagement
+choisi.
+
+POUR COMMENCER : ouvrez « ACTIV.html »
+----------------------------------------------
+Double-cliquez sur « ACTIV.html ». Renseignez votre nom (traçabilité
+du préparateur, NEP 230), puis vous arrivez sur le choix d'engagement :
+
+· « VOS ENGAGEMENTS » : vos missions réelles, sur ce poste.
+  - « Nouvel engagement » ouvre le formulaire de cadrage (référence proposée
+    automatiquement, entité, clôture, référentiel, montant, seuils NEP 320).
+    À la création, ACTIV Décision s'ouvre, identification déjà pré-remplie.
+  - Chaque carte montre l'avancement réel de la chaîne (4 modules) ; cliquer
+    la carte ouvre l'accueil de l'engagement : indicateurs calculés depuis
+    vos dossiers, chaîne d'audit, activité récente, prochaine action.
+  - « Importer (JSON ACTIV) » reconstitue un engagement depuis l'export d'un
+    module (reçu d'un autre poste, par exemple). Les fichiers chiffrés sont
+    acceptés tels quels.
+  - La corbeille d'une carte supprime définitivement l'engagement
+    (les dossiers des 4 modules), après confirmation.
+
+· « CAS DU MÉMOIRE » : BISTOURIX et OHMLETTE, les deux dossiers d'exemple
+  anonymisés du mémoire. Ils s'ouvrent pré-chargés, restent
+  modifiables et exportables, et ne sont pas supprimables.
+
+Dans un module, « Accueil » (ou « Terminer » en synthèse) revient à l'accueil
+ACTIV. « Tous les engagements » revient au choix.
+Navigateur recommandé : Google Chrome ou Microsoft Edge. Tout fonctionne hors
+ligne ; aucune donnée ne quitte votre poste.
+
+LA CHAÎNE D'AUDIT (sans fichier intermédiaire)
+----------------------------------------------
+  ACTIV Décision   → éligibilité à l'activation (PCG 212-3)
+  ACTIV Risques    → cartographie des risques (NEP 315R)
+  ACTIV Programme  → programme de travail (NEP 330R)
+  ACTIV Dossier    → anomalies et incertitudes, conclusion (NEP 450 / 230 / 265)
+
+Au sein d'un engagement, chaque module peut REPRENDRE le travail du module
+amont directement depuis le poste (« Reprendre depuis ACTIV Décision », etc.) :
+plus besoin d'exporter puis d'importer un fichier. L'import par fichier JSON
+reste disponible pour un dossier reçu d'une autre machine.
+
+Tout élément repris d'un module amont arrive marqué « Importé d'ACTIV … »
+et « à valider » : l'auditeur doit le relire et le confirmer (l'import
+pré-remplit le factuel, jamais le jugement : NEP 200 / NEP 230). Tant que
+des éléments restent à valider, la finalisation et l'export Excel sont
+bloqués.
+
+Chaque module se conclut par une finalisation explicite (« Finaliser la
+cartographie », « Finaliser le programme », « Finaliser le dossier » ;
+l'arbre de Décision se conclut de lui-même et propose alors « Verrouiller
+le dossier ») : l'étape passe à « Validé » dans la chaîne de l'accueil et le
+dossier passe en LECTURE SEULE. « Rouvrir le dossier » reste possible à
+tout moment : la réouverture demande un motif et reste tracée (NEP 230).
+La synthèse de chaque module porte aussi les traces de revue (manager et
+associé, avec garde-fou d'auto-revue) et le journal des modifications
+(qui / quoi / quand), repris dans l'export Excel.
+
+COMMENT OUVRIR (aucune installation)
+------------------------------------
+Tout passe par « ACTIV.html ». Les quatre fichiers ACTIV doivent
+rester dans le même dossier que l'accueil (ils sont chargés par nom) ; ouverts
+seuls, ils affichent un simple écran de renvoi vers l'accueil.
+- Navigateurs recommandés : Google Chrome ou Microsoft Edge.
+- Fonctionne 100 % HORS LIGNE : aucune connexion internet n'est requise,
+  aucune donnée n'est envoyée sur le réseau.
+- Tout reste sur votre poste (stockage local du navigateur).
+
+Si Windows affiche un avertissement « fichier provenant d'internet » à
+l'ouverture : c'est normal pour un fichier téléchargé → cliquez
+« Conserver » / « Ouvrir quand même ». Il s'agit d'une simple page web,
+pas d'un programme à installer.
+
+REMARQUES
+---------
+- Les exports (Excel, JSON clair ou chiffré) sont inchangés ; le JSON chiffré
+  protège le contenu par une phrase de passe (AES-GCM).
+- Les dossiers d'exemple sont entièrement anonymisés (« BISTOURIX » /
+  « OHMLETTE ») : aucune référence client réelle, aucun montant réel.
+- Sur l'accueil d'un engagement réel, « Exporter l'engagement (JSON) »
+  télécharge en un seul fichier les dossiers des 4 modules et le cadrage
+  (sauvegarde ou transfert vers un autre poste) ; « Importer (JSON ACTIV) »
+  reconnaît ce fichier et restaure l'engagement complet en l'état.
+- Le guide utilisateur PDF est en cours de mise à jour et sera joint dans
+  une livraison ultérieure (le bouton « Guide » de l'accueil cherchera le
+  fichier « Guide_utilisateur_complet.pdf » placé dans le même dossier).
