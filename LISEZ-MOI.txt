@@ -88,6 +88,6 @@ REMARQUES
   télécharge en un seul fichier les dossiers des 4 modules et le cadrage
   (sauvegarde ou transfert vers un autre poste) ; « Importer (JSON ACTIV) »
   reconnaît ce fichier et restaure l'engagement complet en l'état.
-- Le guide utilisateur PDF est en cours de mise à jour et sera joint dans
-  une livraison ultérieure (le bouton « Guide » de l'accueil cherchera le
-  fichier « Guide_utilisateur_complet.pdf » placé dans le même dossier).
+- Le guide utilisateur complet est fourni dans ce dossier
+  (« Guide_utilisateur_complet.pdf ») ; le bouton « Guide » de l'accueil
+  l'ouvre directement.
