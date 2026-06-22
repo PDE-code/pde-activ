@@ -154,6 +154,14 @@ button:focus-visible { outline:2px solid var(--bleu); outline-offset:2px; }
 
   document.getElementById('seed').onclick=seed;
   document.getElementById('reset').onclick=reset;
+
+  /* Mode auto (lien du site web) : ?auto → précharge en invisible puis redirige vers ACTIV.html */
+  if (new URLSearchParams(window.location.search).has('auto')) {
+    var _row=document.querySelector('.row'); if(_row) _row.style.display='none';
+    say('Préparation de la démonstration…');
+    seed().then(function(){ window.location.replace('./ACTIV.html'); })
+          .catch(function(e){ if(_row) _row.style.display=''; say('Échec : '+(e&&e.message||e),'err'); });
+  }
 })();
 </script>
 </body>
