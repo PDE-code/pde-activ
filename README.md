@@ -2,6 +2,8 @@
 
 ## 🔗 [→ Ouvrir l'application](https://pde-code.github.io/pde-activ/)
 
+📄 [Présentation de l'outil en deux minutes](https://pde-code.github.io/pde-activ/presentation.html) · 📘 [Guide utilisateur (PDF)](https://pde-code.github.io/pde-activ/Guide_utilisateur_complet.pdf)
+
 Application support d'un mémoire de Master 2 CCA consacré à l'audit des
 immobilisations incorporelles en cours (frais de développement, compte 232).
 
