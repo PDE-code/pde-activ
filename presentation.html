@@ -17,8 +17,8 @@
   --bg:#EAEDF7;--surface:#FFFFFF;--surface-2:#EDEFF6;--rail:#F4F6FC;
   --ink:#14172E;--ink-2:#343A63;--muted:#4D5375;
   --line:#E6E8F4;--line-2:#D6DBEE;--line-card:rgba(23,29,143,.10);
-  --danger:#B42318;--ok:#187546;--warn:#8F5F00;--ok-tint:#E6F3EC;--warn-tint:#FBF1DC;
-  --sh-sm:0 8px 16px -8px rgba(23,29,143,.5);--sh-md:0 18px 40px -18px rgba(23,29,143,.4);
+  --danger:#B42318;--ok:#187546;--warn:#8F5F00;--ok-tint:#E6F3EC;--warn-tint:#FBF1DC;--danger-tint:#FBE7E4;
+  --sh-sm:0 8px 16px -8px rgba(23,29,143,.5);--sh-md:0 18px 40px -18px rgba(23,29,143,.4);--sh-lg:0 40px 80px -30px rgba(23,29,143,.45);
   --font:'Hanken Grotesk','Helvetica Neue',Helvetica,Arial,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
   --gut:clamp(24px,6vw,120px);
@@ -31,6 +31,7 @@ a{color:var(--bleu);text-decoration:none}
 a:hover{color:var(--bleu-700)}
 :focus-visible{outline:3px solid var(--bleu);outline-offset:3px;border-radius:6px}
 ::selection{background:var(--bleu-tint);color:var(--marine)}
+img{max-width:100%;display:block}
 .mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .eyebrow{font-family:var(--mono);font-size:clamp(11px,.86vw,13px);letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);font-weight:600}
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
@@ -46,7 +47,7 @@ a:hover{color:var(--bleu-700)}
 .top nav{margin-left:auto;display:flex;align-items:center;gap:6px}
 .top nav a{padding:9px 13px;border-radius:9px;font-weight:600;font-size:14px;color:var(--ink-2)}
 .top nav a:hover{background:var(--surface);color:var(--marine)}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:11px;font-weight:700;font-size:15px;border:1px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s;cursor:pointer;font-family:inherit}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:12px 18px;border-radius:11px;font-weight:700;font-size:15px;border:1px solid transparent;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .2s;cursor:pointer;font-family:inherit;line-height:1.2}
 .btn--primary{background:var(--marine);color:#fff;box-shadow:var(--sh-sm)}
 .btn--primary:hover{background:var(--marine-700);color:#fff;transform:translateY(-1px);box-shadow:var(--sh-md)}
 .btn--ghost{background:var(--surface);color:var(--marine);border-color:var(--line-2)}
@@ -56,16 +57,29 @@ a:hover{color:var(--bleu-700)}
 .top nav a.btn--primary{color:#fff}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(56px,9vw,120px) 0 clamp(40px,6vw,72px)}
-.hero h1{font-size:clamp(2.3rem,5.6vw,4.9rem);line-height:1.02;letter-spacing:-.03em;font-weight:800;color:var(--marine-700);max-width:16ch;margin:18px 0 22px;text-wrap:balance}
+.hero{padding:clamp(48px,7vw,96px) 0 clamp(40px,6vw,72px)}
+.hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(2.1rem,3.9vw,3.5rem);line-height:1.04;letter-spacing:-.03em;font-weight:800;color:var(--marine-700);max-width:20ch;margin:16px 0 18px;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--bleu)}
-.lede{font-size:clamp(1.08rem,1.5vw,1.3rem);color:var(--ink-2);max-width:62ch;line-height:1.5}
+.lede{font-size:clamp(1.05rem,1.35vw,1.2rem);color:var(--ink-2);max-width:56ch;line-height:1.5}
 .lede b{color:var(--ink);font-weight:700}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 0;align-items:center}
-.cta .hint{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:6px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0 0;align-items:center}
+.cta .hint{font-family:var(--mono);font-size:12px;color:var(--muted);flex-basis:100%}
+.shot{position:relative}
+.frame{background:var(--surface);border:1px solid var(--line-card);border-radius:16px;box-shadow:var(--sh-lg);overflow:hidden;transform:perspective(1600px) rotateY(-4deg) rotateX(1.5deg);transform-origin:left center}
+.frame__bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--rail)}
+.frame__bar i{width:9px;height:9px;border-radius:50%;background:var(--line-2)}
+.frame__bar span{margin-left:8px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+.frame img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.shot__tag{position:absolute;left:-10px;bottom:22px;background:var(--surface);border:1px solid var(--line-card);border-radius:12px;box-shadow:var(--sh-md);padding:10px 14px;font-size:13px;max-width:260px;line-height:1.4}
+.shot__tag b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent);margin-bottom:2px}
+
+/* repères */
+.marks{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:clamp(28px,4vw,44px);padding-top:18px;border-top:1px solid var(--line-card);font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.marks span b{color:var(--marine);font-weight:700;font-size:15px;margin-right:6px}
 
 /* ---------- pipeline (signature) ---------- */
-.pipe{margin-top:clamp(44px,6vw,80px);background:var(--surface);border:1px solid var(--line-card);border-radius:22px;box-shadow:var(--sh-md);padding:clamp(22px,3.4vw,40px)}
+.pipe{margin-top:clamp(36px,5vw,64px);background:var(--surface);border:1px solid var(--line-card);border-radius:22px;box-shadow:var(--sh-md);padding:clamp(22px,3.4vw,40px)}
 .pipe__h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:26px}
 .pipe__h h2{font-size:1.05rem;font-weight:700;color:var(--ink)}
 .pipe__h .eyebrow{color:var(--muted)}
@@ -96,29 +110,56 @@ section.s{padding:clamp(48px,7vw,96px) 0}
 .card{background:var(--surface);border:1px solid var(--line-card);border-radius:18px;box-shadow:var(--sh-sm);padding:clamp(18px,2.4vw,28px)}
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
+.demo-lab{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bleu);background:var(--bleu-tint);border-radius:999px;padding:5px 11px;margin-bottom:14px}
+.demo-lab i{width:7px;height:7px;border-radius:50%;background:var(--bleu)}
 
-/* critères */
+/* ---------- visite guidée ---------- */
+.tour{display:grid;grid-template-columns:260px 1fr;gap:clamp(16px,2.5vw,32px);align-items:start}
+.tabs{display:grid;gap:6px}
+.tab{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;text-align:left;padding:11px 12px;border-radius:12px;border:1px solid transparent;background:transparent;font-family:inherit;font-size:15px;font-weight:700;color:var(--ink-2);cursor:pointer;transition:background .2s,border-color .2s}
+.tab small{display:block;font-weight:500;font-size:12px;color:var(--muted);letter-spacing:0}
+.tab .ic{width:34px;height:34px;border-radius:10px;background:var(--marine-tint);display:grid;place-items:center;color:var(--marine)}
+.tab:hover{background:var(--surface)}
+.tab[aria-selected="true"]{background:var(--surface);border-color:var(--line-card);box-shadow:var(--sh-sm);color:var(--marine-700)}
+.tab[aria-selected="true"] .ic{background:linear-gradient(150deg,var(--marine-2),var(--marine-700));color:#fff}
+.panel{display:none}
+.panel.on{display:block}
+.panel .frame{transform:none}
+.panel__cap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.panel__cap div{padding:12px 14px;border-radius:12px;background:var(--rail);border:1px solid var(--line);font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.panel__cap b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bleu);margin-bottom:4px}
+
+/* ---------- critères (mini-démo) ---------- */
 .crit{list-style:none;display:grid;gap:0}
-.crit li{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.crit li{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
 .crit li:last-child{border-bottom:0}
-.crit .n{font-family:var(--mono);font-size:13px;color:var(--bleu);font-weight:600}
+.crit .n{font-family:var(--mono);font-size:13px;color:var(--bleu);font-weight:600;white-space:nowrap}
 .crit .t{font-weight:700}
 .crit .d{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:2px}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;padding:4px 8px;border-radius:6px;background:var(--ok-tint);color:var(--ok);font-weight:600;white-space:nowrap}
-.rule{display:grid;gap:14px}
-.rule .big{font-size:clamp(1.25rem,2vw,1.55rem);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--marine-700)}
-.term{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-.term div{padding:14px;border-radius:12px;border:1px solid var(--line-2);background:var(--rail)}
+.seg{display:inline-grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-2);border-radius:9px;overflow:hidden;background:var(--rail)}
+.seg button{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;padding:7px 12px;border:0;background:transparent;color:var(--muted);cursor:pointer;transition:background .15s,color .15s}
+.seg button[aria-pressed="true"].yes{background:var(--ok-tint);color:var(--ok)}
+.seg button[aria-pressed="true"].no{background:var(--danger-tint);color:var(--danger)}
+.crit li.is-no .t{color:var(--danger)}
+.verdict{display:grid;gap:14px;position:sticky;top:84px}
+.verdict .big{font-size:clamp(1.25rem,2vw,1.55rem);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--marine-700)}
+.term{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.term div{padding:14px;border-radius:12px;border:1px solid var(--line-2);background:var(--rail);transition:background .25s,border-color .25s,opacity .25s;opacity:.55}
+.term div.on{opacity:1;border-color:currentColor}
+.term div.on.ok{background:var(--ok-tint);color:var(--ok)}
+.term div.on.no{background:var(--danger-tint);color:var(--danger)}
 .term .k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .term .v{font-weight:800;margin-top:4px}
 .term .v.ok{color:var(--ok)}.term .v.no{color:var(--danger)}
+.verdict__why{font-size:14.5px;color:var(--ink-2);min-height:44px}
+.verdict__why b{color:var(--danger)}
 
-/* matrice */
+/* ---------- matrice ---------- */
 .matrix{display:grid;grid-template-columns:auto repeat(5,minmax(52px,1fr));gap:6px;align-items:stretch}
 .matrix .hd .hs{display:none}
 .matrix .hd{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;display:flex;align-items:end;justify-content:center;text-align:center;padding-bottom:6px;line-height:1.2}
 .matrix .rh{font-family:var(--mono);font-size:11px;color:var(--ink-2);display:flex;align-items:center;padding-right:10px;white-space:nowrap;font-weight:600}
-.cell{aspect-ratio:1.35;border-radius:9px;border:1px solid var(--line);background:var(--rail);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:transparent;cursor:default;transition:transform .2s var(--ease),box-shadow .2s var(--ease);font-family:var(--mono)}
+.cell{aspect-ratio:1.35;border-radius:9px;border:1px solid var(--line);background:var(--rail);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:transparent;cursor:default;transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
 .cell[data-sig]{cursor:pointer;color:#fff}
 .cell[data-sig="2"]{background:#C7D9F2;color:var(--marine)}
 .cell[data-sig="3"]{background:#7FB1E6;color:var(--marine-700)}
@@ -136,6 +177,28 @@ section.s{padding:clamp(48px,7vw,96px) 0}
 .counter{font-family:var(--mono);font-size:13px;color:var(--ink-2);margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
 .counter b{color:var(--marine);font-weight:700}
 
+/* ---------- NEP 450 (mini-démo) ---------- */
+.nep{display:grid;gap:14px}
+.nep__row{display:grid;grid-template-columns:70px 1fr 150px;gap:10px;align-items:center}
+.nep__row .code{font-family:var(--mono);font-size:12px;color:var(--bleu);font-weight:600}
+.nep input[type=text]{font-family:var(--mono);font-size:14px;padding:9px 11px;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--ink);width:100%;text-align:right}
+.nep input:focus{border-color:var(--bleu);outline:none;box-shadow:0 0 0 3px var(--bleu-tint)}
+.nep select{font-family:inherit;font-size:13.5px;padding:9px 10px;border:1px solid var(--line-2);border-radius:9px;background:var(--surface);color:var(--ink)}
+.nep__seuils{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
+.nep__seuils label{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.presets button{font-family:inherit;font-size:13px;font-weight:600;padding:7px 11px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface);color:var(--marine);cursor:pointer}
+.presets button:hover{border-color:var(--bleu)}
+.result{display:grid;gap:12px;position:sticky;top:84px}
+.result__band{padding:16px 18px;border-radius:14px;border:1px solid;font-weight:700;line-height:1.35}
+.result__band.none{background:var(--ok-tint);border-color:#BFE0CC;color:var(--ok)}
+.result__band.remontee{background:var(--warn-tint);border-color:#EBD6A0;color:var(--warn)}
+.result__band.signification{background:var(--danger-tint);border-color:#F1C2BC;color:var(--danger)}
+.result__band small{display:block;font-weight:500;font-size:13.5px;margin-top:6px;color:var(--ink-2)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:14px;color:var(--ink-2)}
+.kv b{font-family:var(--mono);font-weight:600;color:var(--ink);text-align:right}
+.kv .warn{color:var(--danger)}
+
 /* validation chain */
 .badge{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;padding:6px 10px;border-radius:8px;font-weight:600;border:1px solid transparent}
 .badge.warn{background:var(--warn-tint);color:var(--warn);border-color:#EBD6A0}
@@ -149,13 +212,22 @@ section.s{padding:clamp(48px,7vw,96px) 0}
 .quote small{display:block;font-weight:500;color:var(--muted);font-size:14px;margin-top:8px;letter-spacing:0}
 
 /* démo */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;counter-reset:st}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .step{position:relative;padding-top:8px}
 .step .n{font-family:var(--mono);font-size:12px;color:var(--bleu);letter-spacing:.1em}
 .step h3{font-size:1.15rem;font-weight:800;letter-spacing:-.015em;margin:8px 0 8px}
 .step p{color:var(--ink-2);font-size:15px}
 .exports{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .exports span{font-family:var(--mono);font-size:12px;padding:5px 9px;border-radius:7px;background:var(--marine-tint);color:var(--marine);font-weight:600}
+
+/* FAQ */
+.faq{display:grid;gap:10px}
+.faq details{background:var(--surface);border:1px solid var(--line-card);border-radius:14px;padding:0 18px}
+.faq summary{cursor:pointer;list-style:none;padding:16px 0;font-weight:700;font-size:1.02rem;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-family:var(--mono);color:var(--bleu);font-size:18px;flex:none}
+.faq details[open] summary::after{content:'·'}
+.faq details p{padding:0 0 18px;color:var(--ink-2);font-size:15px;max-width:72ch}
 
 /* cadre */
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -168,10 +240,22 @@ footer{border-top:1px solid var(--line-card);padding:32px 0 48px;color:var(--mut
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
 footer a{font-weight:600}
 
+@media (max-width:980px){
+  .hero__grid{grid-template-columns:1fr}
+  .frame{transform:none}
+  .shot__tag{position:static;margin-top:12px;max-width:none}
+  .tour{grid-template-columns:1fr}
+  .tabs{grid-template-columns:repeat(5,1fr);gap:4px}
+  .tab{grid-template-columns:1fr;text-align:center;padding:9px 6px;font-size:12.5px}
+  .tab .ic{margin:0 auto 2px}
+  .tab small{display:none}
+}
 @media (max-width:900px){
   .grid2{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .facts{grid-template-columns:1fr 1fr}
+  .panel__cap{grid-template-columns:1fr}
+  .verdict,.explain,.result{position:static}
 }
 @media (max-width:720px){
   .top nav a:not(.btn){display:none}
@@ -189,6 +273,9 @@ footer a{font-weight:600}
   .matrix .hd .hl{display:none}.matrix .hd .hs{display:inline;font-size:12px}
   .legend{font-size:12px}
   .cell{font-size:11px}
+  .nep__row{grid-template-columns:54px 1fr 118px}
+  .crit li{grid-template-columns:44px 1fr;gap:8px 12px}
+  .crit li .seg{grid-column:2}
 }
 @keyframes fillY{to{transform:scaleY(1)}}
 @media (prefers-reduced-motion:reduce){
@@ -196,12 +283,14 @@ footer a{font-weight:600}
   .node,.node.on{animation:none;opacity:1;transform:none}
   .node.on .node__line i{animation:none;transform:none}
   .reveal{opacity:1;transform:none;transition:none}
-  .btn,.cell{transition:none}
+  .btn,.cell,.tab{transition:none}
 }
 @media print{
   .top,.cta{display:none}
   body{background:#fff}
-  .pipe,.card{box-shadow:none}
+  .pipe,.card,.frame{box-shadow:none}
+  .frame{transform:none}
+  .panel{display:block}
 }
 </style>
 </head>
@@ -214,8 +303,10 @@ footer a{font-weight:600}
       <span><b>ACTIV</b><small>Audit des immobilisations R&amp;D</small></span>
     </a>
     <nav aria-label="Navigation">
+      <a href="#visite">Visite</a>
       <a href="#criteres">Critères</a>
       <a href="#matrice">Matrice</a>
+      <a href="#nep450">Seuils</a>
       <a href="#demo">Démo</a>
       <a href="Guide_utilisateur_complet.pdf">Guide</a>
       <a class="btn btn--primary" href="ACTIV.html">Ouvrir ACTIV <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -226,13 +317,32 @@ footer a{font-weight:600}
 <main>
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Outil d'audit · compte 232 · art. 212-3 PCG</div>
-    <h1>Auditer l'activation des frais de développement, <em>du critère à la conclusion.</em></h1>
-    <p class="lede">ACTIV enchaîne quatre modules qui suivent la démarche d'audit : l'éligibilité du projet, la cartographie des risques, le programme de travail, puis la documentation des constats. <b>Tout tourne dans le navigateur, sans serveur</b> : aucune donnée ne quitte le poste.</p>
-    <div class="cta">
-      <a class="btn btn--primary" href="ACTIV.html">Ouvrir l'application <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn--ghost" href="Guide_utilisateur_complet.pdf">Guide utilisateur (PDF)</a>
-      <span class="hint">Chrome ou Edge recommandé · deux dossiers de démonstration prêts</span>
+    <div class="hero__grid">
+      <div>
+        <div class="eyebrow">Outil d'audit · compte 232 · art. 212-3 PCG</div>
+        <h1>Auditer l'activation des frais de développement, <em>du critère à la conclusion.</em></h1>
+        <p class="lede">ACTIV enchaîne quatre modules qui suivent la démarche d'audit : l'éligibilité du projet, la cartographie des risques, le programme de travail, puis la documentation des constats. <b>Tout tourne dans le navigateur, sans serveur</b> : aucune donnée ne quitte le poste.</p>
+        <div class="cta">
+          <a class="btn btn--primary" href="ACTIV.html">Ouvrir l'application <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="btn btn--ghost" href="#visite">Voir les écrans</a>
+          <span class="hint">Chrome ou Edge recommandé · deux dossiers de démonstration prêts</span>
+        </div>
+      </div>
+      <div class="shot">
+        <div class="frame">
+          <div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ACTIV Dossier · synthèse NEP 450</span></div>
+          <img src="img/dossier-synthese.jpg" width="1440" height="900" alt="Écran de synthèse d'ACTIV Dossier : qualification NEP 450 « dépassement », montant capitalisé 1 400 000 €, identification et seuils du dossier OHMLETTE." fetchpriority="high">
+        </div>
+        <div class="shot__tag"><b>Qualification NEP 450</b>Une anomalie de 40 000 € contre un seuil de remontée de 6 000 € : à porter à la connaissance de la direction.</div>
+      </div>
+    </div>
+
+    <div class="marks" aria-label="Repères">
+      <span><b>4</b>modules enchaînés</span>
+      <span><b>6</b>critères cumulatifs</span>
+      <span><b>25</b>croisements risque × assertion, 11 retenus</span>
+      <span><b>3</b>seuils NEP 320</span>
+      <span><b>0</b>serveur, 0 donnée transmise</span>
     </div>
 
     <div class="pipe" aria-label="La chaîne des quatre modules">
@@ -273,7 +383,48 @@ footer a{font-weight:600}
       <div class="pipe__foot">
         <span><b>Un accueil unique</b> crée et rouvre les engagements</span>
         <span><b>Seuils NEP 320</b> posés au cadrage, repris partout</span>
-        <span><b>Exports</b> Excel multi-onglets, PDF, JSON chiffré AES-GCM</span>
+        <span><b>Exports</b> Excel (dossier de travail complet), PDF, JSON chiffré AES-GCM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="visite">
+  <div class="wrap">
+    <div class="s__h reveal">
+      <div class="eyebrow">Visite guidée</div>
+      <h2>Ce que voit l'auditeur, écran par écran.</h2>
+      <p>Captures réelles de l'outil sur le dossier de démonstration OHMLETTE (fictif). Un onglet par étape de la chaîne.</p>
+    </div>
+    <div class="tour reveal">
+      <div class="tabs" role="tablist" aria-label="Écrans d'ACTIV">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-hub" id="t-hub"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></span><span>Accueil<small>Engagements, chaîne, seuils</small></span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-dec" id="t-dec" tabindex="-1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.3"/><circle cx="6" cy="19" r="2.3"/><circle cx="18" cy="19" r="2.3"/><path d="M12 7.3V12"/><path d="M12 12H6v4.7"/><path d="M12 12h6v4.7"/></svg></span><span>Décision<small>Arbre, six critères</small></span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-ris" id="t-ris" tabindex="-1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M9.33 4v16M14.66 4v16M4 9.33h16M4 14.66h16"/></svg></span><span>Risques<small>Cotation, heatmap</small></span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-pro" id="t-pro" tabindex="-1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5l1.7 1.7l3-3.2M4 12.5l1.7 1.7l3-3.2M4 18.5l1.7 1.7l3-3.2M12 6h8M12 12h8M12 18h8"/></svg></span><span>Programme<small>Fiches de procédure</small></span></button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-dos" id="t-dos" tabindex="-1"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7a2 2 0 0 1 2-2h3.4l1.8 2h7.8a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/><path d="M9 13.7l2 2l3.7-3.7"/></svg></span><span>Dossier<small>Anomalies, conclusion</small></span></button>
+      </div>
+      <div class="panels">
+        <div class="panel on" role="tabpanel" id="p-hub" aria-labelledby="t-hub">
+          <div class="frame"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>Accueil ACTIV · engagement OHMLETTE</span></div><img src="img/hub-accueil-engagement.jpg" width="1440" height="900" loading="lazy" alt="Accueil de l'engagement OHMLETTE : solde du poste 232, risque inhérent, constats NEP 450, chaîne des quatre modules validés et seuils NEP 320."></div>
+          <div class="panel__cap"><div><b>On saisit</b>La référence, l'entité, la clôture, le référentiel et les trois seuils NEP 320, une fois pour toute la chaîne.</div><div><b>L'outil calcule</b>L'avancement de chaque module, le solde 232, le risque inhérent et le nombre de constats, lus dans les dossiers.</div><div><b>Il en sort</b>La prochaine action recommandée et l'export JSON de l'engagement complet.</div></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-dec" aria-labelledby="t-dec" hidden>
+          <div class="frame"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ACTIV Décision · critère N1.1</span></div><img src="img/decision-criteres.jpg" width="1440" height="900" loading="lazy" alt="Écran ACTIV Décision : question N1.1 sur la faisabilité technique, réponse « Oui (documenté) », justification saisie, rail « Pourquoi cette question » et sources PCG et IAS 38."></div>
+          <div class="panel__cap"><div><b>On saisit</b>Une réponse par question, avec la preuve attendue et la justification, obligatoire sur les critères.</div><div><b>L'outil calcule</b>Le verdict (activable, sous réserve, en charges, à déprécier) et les garde-fous qui plafonnent le statut.</div><div><b>Il en sort</b>L'arbre complet, la piste d'audit horodatée et la doctrine attachée à chaque question.</div></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-ris" aria-labelledby="t-ris" hidden>
+          <div class="frame"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ACTIV Risques · matrice des risques</span></div><img src="img/risques-matrice.jpg" width="1440" height="900" loading="lazy" alt="Écran ACTIV Risques : liste des 14 risques cotés en inhérent et résiduel, badges « importé d'ACTIV Décision » et « validé », heatmap 5 × 5 et bande globale critique."></div>
+          <div class="panel__cap"><div><b>On saisit</b>Probabilité et impact inhérents, les contrôles, puis la cotation résiduelle et sa justification.</div><div><b>L'outil calcule</b>Les scores sur 25, la heatmap, la bande globale et la couverture des 25 croisements risque × assertion.</div><div><b>Il en sort</b>Le registre des risques complet, la matrice de couverture et les renvois vers le programme.</div></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-pro" aria-labelledby="t-pro" hidden>
+          <div class="frame"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ACTIV Programme · fiche TOD-03</span></div><img src="img/programme-fiche.jpg" width="1440" height="900" loading="lazy" alt="Écran ACTIV Programme : fiche de la procédure TOD-03, reperformance des taux horaires, avec objectif, inputs, méthode pas à pas, échantillonnage, élément probant et critères de conclusion."></div>
+          <div class="panel__cap"><div><b>On saisit</b>Le profil de mission, puis pour chaque procédure : statut, effort, conclusion rédigée et références aux preuves.</div><div><b>L'outil calcule</b>La couverture par assertion, l'effort consommé et le nombre d'anomalies significatives.</div><div><b>Il en sort</b>Les fiches à dix champs, avec méthode et échantillonnage, prêtes pour le dossier de travail.</div></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-dos" aria-labelledby="t-dos" hidden>
+          <div class="frame"><div class="frame__bar" aria-hidden="true"><i></i><i></i><i></i><span>ACTIV Dossier · synthèse</span></div><img src="img/dossier-synthese.jpg" width="1440" height="900" loading="lazy" alt="Écran ACTIV Dossier : synthèse avec qualification NEP 450 « dépassement », montant capitalisé et cadrage du dossier OHMLETTE."></div>
+          <div class="panel__cap"><div><b>On saisit</b>Le cadrage NEP 540, chaque anomalie (montant, sens, nature, décision), les conclusions par assertion et la conclusion d'ensemble.</div><div><b>L'outil calcule</b>L'effet brut et net, la comparaison aux seuils et la qualification NEP 450, sans compensation.</div><div><b>Il en sort</b>La matrice NEP 450, les recommandations NEP 265, la trace des revues et le verrouillage du dossier.</div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -284,27 +435,28 @@ footer a{font-weight:600}
     <div class="s__h reveal">
       <div class="eyebrow">Module Décision</div>
       <h2>Six critères, tous cumulatifs.</h2>
-      <p>L'article 212-3 du Plan comptable général n'autorise l'inscription à l'actif que si les six conditions sont réunies en même temps. ACTIV les pose une par une, avec la justification et la pièce attendue à chaque réponse.</p>
+      <p>L'article 212-3 du Plan comptable général n'autorise l'inscription à l'actif que si les six conditions sont réunies en même temps. Essayez : passez un critère à « Non ».</p>
     </div>
     <div class="grid2">
       <div class="card reveal">
-        <ol class="crit">
-          <li><span class="n">1 / 6</span><span class="t">Faisabilité technique<span class="d">Capacité technique d'achever l'immobilisation en vue de sa mise en service ou de sa vente.</span></span><span class="tag">OUI</span></li>
-          <li><span class="n">2 / 6</span><span class="t">Intention d'achever<span class="d">Intention d'achever l'immobilisation puis de l'utiliser ou de la vendre.</span></span><span class="tag">OUI</span></li>
-          <li><span class="n">3 / 6</span><span class="t">Capacité à utiliser ou vendre<span class="d">Capacité à utiliser ou à vendre l'immobilisation incorporelle.</span></span><span class="tag">OUI</span></li>
-          <li><span class="n">4 / 6</span><span class="t">Avantages économiques futurs<span class="d">Avantages économiques futurs probables : marché ou utilité interne démontrés.</span></span><span class="tag">OUI</span></li>
-          <li><span class="n">5 / 6</span><span class="t">Disponibilité des ressources<span class="d">Ressources techniques, financières et autres pour achever le projet.</span></span><span class="tag">OUI</span></li>
-          <li><span class="n">6 / 6</span><span class="t">Évaluation fiable des coûts<span class="d">Capacité à évaluer de façon fiable les dépenses attribuables au projet.</span></span><span class="tag">OUI</span></li>
+        <div class="demo-lab"><i></i>Mini-démo</div>
+        <ol class="crit" id="crit">
+          <li><span class="n">1 / 6</span><span class="t">Faisabilité technique<span class="d">Capacité technique d'achever l'immobilisation en vue de sa mise en service ou de sa vente.</span></span></li>
+          <li><span class="n">2 / 6</span><span class="t">Intention d'achever<span class="d">Intention d'achever l'immobilisation puis de l'utiliser ou de la vendre.</span></span></li>
+          <li><span class="n">3 / 6</span><span class="t">Capacité à utiliser ou vendre<span class="d">Capacité à utiliser ou à vendre l'immobilisation incorporelle.</span></span></li>
+          <li><span class="n">4 / 6</span><span class="t">Avantages économiques futurs<span class="d">Avantages économiques futurs probables : marché ou utilité interne démontrés.</span></span></li>
+          <li><span class="n">5 / 6</span><span class="t">Disponibilité des ressources<span class="d">Ressources techniques, financières et autres pour achever le projet.</span></span></li>
+          <li><span class="n">6 / 6</span><span class="t">Évaluation fiable des coûts<span class="d">Capacité à évaluer de façon fiable les dépenses attribuables au projet.</span></span></li>
         </ol>
       </div>
-      <div class="card reveal rule">
-        <div class="eyebrow">La règle</div>
-        <div class="big">Un seul « Non » bascule l'intégralité du projet en charges.</div>
-        <p style="color:var(--ink-2);font-size:15px">Avant les critères, le module vérifie que la frontière recherche / développement est franchie. Après, il examine la base de coûts, le cut-off et la dépréciation, avec des garde-fous qui plafonnent le verdict.</p>
+      <div class="card reveal verdict" aria-live="polite">
+        <div class="eyebrow">Verdict</div>
+        <div class="big" id="v-big">Les six critères sont réunis : le projet est activable.</div>
         <div class="term">
-          <div><div class="k">Six oui</div><div class="v ok">Immobilisation · compte 232</div></div>
-          <div><div class="k">Un non</div><div class="v no">Charges de l'exercice</div></div>
+          <div class="ok on" id="v-ok"><div class="k">Six oui</div><div class="v ok">Immobilisation · compte 232</div></div>
+          <div class="no" id="v-no"><div class="k">Un non</div><div class="v no">Charges de l'exercice</div></div>
         </div>
+        <p class="verdict__why" id="v-why">Dans l'outil, chaque « Oui » exige une preuve documentée ; un « Oui non documenté » plafonne le verdict à « activable sous réserve ».</p>
       </div>
     </div>
   </div>
@@ -331,6 +483,44 @@ footer a{font-weight:600}
         <div class="t">Valorisation des coûts internes × Valorisation / exactitude</div>
         <div class="j">Le taux horaire interne et les coûts incorporés déterminent l'exactitude du montant capitalisé. C'est le cœur du mémoire : on audite une estimation, pas une facture.</div>
         <div class="sig">Significativité 5 / 5 · Critique</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="nep450">
+  <div class="wrap">
+    <div class="s__h reveal">
+      <div class="eyebrow">Module Dossier</div>
+      <h2>Les seuils décident, sans compensation.</h2>
+      <p>La règle NEP 450 telle que l'outil l'applique : l'effet cumulé brut se compare au seuil de remontée, le net et le brut au seuil de signification. Modifiez les montants pour voir la qualification changer.</p>
+    </div>
+    <div class="grid2">
+      <div class="card reveal nep" id="nep">
+        <div class="demo-lab"><i></i>Mini-démo · préremplie avec le cas OHMLETTE</div>
+        <div class="nep__row"><span class="code">A-01</span><input type="text" inputmode="numeric" id="a1" value="40 000" aria-label="Montant de l'anomalie A-01 en euros"><select id="d1" aria-label="Sens de l'anomalie A-01"><option value="SOUS_EVAL" selected>Sous-évaluation</option><option value="SUR_EVAL">Sur-évaluation</option></select></div>
+        <div class="nep__row"><span class="code">A-02</span><input type="text" inputmode="numeric" id="a2" value="" placeholder="0" aria-label="Montant de l'anomalie A-02 en euros"><select id="d2" aria-label="Sens de l'anomalie A-02"><option value="SUR_EVAL" selected>Sur-évaluation</option><option value="SOUS_EVAL">Sous-évaluation</option></select></div>
+        <div class="nep__row"><span class="code">A-03</span><input type="text" inputmode="numeric" id="a3" value="" placeholder="0" aria-label="Montant de l'anomalie A-03 en euros"><select id="d3" aria-label="Sens de l'anomalie A-03"><option value="SUR_EVAL" selected>Sur-évaluation</option><option value="SOUS_EVAL">Sous-évaluation</option></select></div>
+        <div class="nep__seuils">
+          <div><label for="s-sig">Seuil de signification</label><input type="text" inputmode="numeric" id="s-sig" value="220 000"></div>
+          <div><label for="s-rem">Seuil de remontée</label><input type="text" inputmode="numeric" id="s-rem" value="6 000"></div>
+        </div>
+        <div class="presets" aria-label="Cas préparés">
+          <button type="button" data-preset="ohmlette">Cas OHMLETTE</button>
+          <button type="button" data-preset="compensation">Compensation brut ≫ net</button>
+          <button type="button" data-preset="clean">Aucune anomalie</button>
+        </div>
+      </div>
+      <div class="card reveal result" aria-live="polite">
+        <div class="eyebrow">Qualification NEP 450</div>
+        <div class="result__band remontee" id="r-band"><span id="r-title">Dépassement : à porter à la connaissance de la direction.</span><small id="r-msg"></small></div>
+        <div class="kv">
+          <span>Effet cumulé brut</span><b id="r-gross">40 000 €</b>
+          <span>Sur-évaluation</span><b id="r-over">0 €</b>
+          <span>Sous-évaluation</span><b id="r-under">40 000 €</b>
+          <span>Effet net</span><b id="r-net">-40 000 €</b>
+          <span>Dépassements individuels du seuil de remontée</span><b id="r-ind">A-01</b>
+        </div>
       </div>
     </div>
   </div>
@@ -366,8 +556,23 @@ footer a{font-weight:600}
       <div class="steps">
         <div class="step"><div class="n">ÉTAPE 1</div><h3>Ouvrir ACTIV et s'identifier</h3><p>Le nom de l'auditeur est repris dans chaque module et chaque export, pour la traçabilité de la préparation et de la revue (NEP 230).</p></div>
         <div class="step"><div class="n">ÉTAPE 2</div><h3>Choisir un dossier</h3><p>BISTOURIX et OHMLETTE sont deux dossiers fictifs et anonymisés, déjà déroulés sur les quatre modules. Un engagement réel se crée en un formulaire de cadrage.</p></div>
-        <div class="step"><div class="n">ÉTAPE 3</div><h3>Dérouler, puis exporter</h3><p>Chaque module se termine par une synthèse et ses exports.</p><div class="exports"><span>Excel multi-onglets</span><span>PDF</span><span>JSON chiffré AES-GCM</span></div></div>
+        <div class="step"><div class="n">ÉTAPE 3</div><h3>Dérouler, puis exporter</h3><p>Chaque module se termine par une synthèse et ses exports. L'Excel reprend tout le dossier de travail, un onglet par écran.</p><div class="exports"><span>Excel · dossier de travail</span><span>PDF</span><span>JSON chiffré AES-GCM</span></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="questions">
+  <div class="wrap">
+    <div class="s__h reveal">
+      <div class="eyebrow">Questions d'auditeur</div>
+      <h2>Ce qu'on demande en général.</h2>
+    </div>
+    <div class="faq reveal">
+      <details><summary>Où vont les données ?</summary><p>Nulle part. Le dossier de travail vit dans le stockage local du navigateur, sur le poste, comme un fichier Excel. Aucun serveur, aucune transmission. Pour échanger entre postes, l'export JSON est chiffré (AES-GCM, phrase de passe). Le dossier de travail lui-même n'est pas chiffré sur le poste : c'est dit tel quel.</p></details>
+      <details><summary>Et la fraude ?</summary><p>La matrice couvre les risques d'anomalie liés à l'estimation et au classement. Le risque de fraude est traité à part, par le jugement professionnel et les procédures de la NEP 240 ; l'outil ne prétend pas le remplacer.</p></details>
+      <details><summary>Que fait l'import d'un module à l'autre ?</summary><p>Il pré-remplit le factuel : les risques suggérés par les garde-fous de la Décision, les procédures priorisées par les Risques, les constats du Programme. Chaque élément importé porte un badge « à valider » et bloque la finalisation et l'export Excel tant qu'un auditeur ne l'a pas relu.</p></details>
+      <details><summary>Ça marche en IFRS ? Et pour les logiciels ?</summary><p>Le cœur est PCG (art. 212-3, six critères, dans l'esprit d'IAS 38). Un volet IFRS est prévu au cadrage, et le module Décision propose un second volet pour les solutions informatiques et ERP (règlement ANC 2023-05, art. 611). Ce n'est ni un outil de consolidation ni un outil Swiss GAAP RPC.</p></details>
     </div>
   </div>
 </section>
@@ -412,22 +617,64 @@ footer a{font-weight:600}
     rev.forEach(function(el){io.observe(el);});
   }else rev.forEach(function(el){el.classList.add('in');});
 
-  /* matrice 5 x 5 : 11 croisements retenus (risques en lignes, assertions en colonnes) */
-  var RISK=[['ÉLIG','Éligibilité à l’activation'],['VAL','Valorisation des coûts internes'],['CUT','Cut-off (démarrage / arrêt)'],['EXIST','Existence et réalité des projets'],['DÉPR','Dépréciation']];
+  /* visite guidée : onglets accessibles */
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function selectTab(tab){
+    tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;
+      var p=document.getElementById(t.getAttribute('aria-controls'));p.classList.toggle('on',on);p.hidden=!on;});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){selectTab(t);});
+    t.addEventListener('keydown',function(e){
+      var d=e.key==='ArrowRight'||e.key==='ArrowDown'?1:(e.key==='ArrowLeft'||e.key==='ArrowUp'?-1:0);
+      if(!d)return;e.preventDefault();var n=tabs[(i+d+tabs.length)%tabs.length];selectTab(n);n.focus();
+    });
+  });
+
+  /* six critères : bascules Oui / Non */
+  var crit=document.getElementById('crit'),items=crit.querySelectorAll('li'),answers=[];
+  var big=document.getElementById('v-big'),why=document.getElementById('v-why'),vOk=document.getElementById('v-ok'),vNo=document.getElementById('v-no');
+  var NAMES=['la faisabilité technique','l\'intention d\'achever','la capacité à utiliser ou vendre','les avantages économiques futurs','la disponibilité des ressources','l\'évaluation fiable des coûts'];
+  function verdict(){
+    var noIdx=[];answers.forEach(function(a,i){if(!a)noIdx.push(i);});
+    items.forEach(function(li,i){li.classList.toggle('is-no',!answers[i]);});
+    if(noIdx.length===0){
+      big.textContent='Les six critères sont réunis : le projet est activable.';
+      vOk.classList.add('on');vNo.classList.remove('on');
+      why.innerHTML='Dans l\'outil, chaque « Oui » exige une preuve documentée ; un « Oui non documenté » plafonne le verdict à « activable sous réserve ».';
+    }else{
+      big.textContent='Un seul « Non » suffit : l\'intégralité du projet passe en charges.';
+      vOk.classList.remove('on');vNo.classList.add('on');
+      var list=noIdx.map(function(i){return NAMES[i];});
+      why.innerHTML='Critère'+(list.length>1?'s':'')+' manquant'+(list.length>1?'s':'')+' : <b>'+list.join(', ')+'</b>. Les dépenses de l\'exercice restent en charges, et ce qui avait été activé se déprécie.';
+    }
+  }
+  items.forEach(function(li,i){
+    answers[i]=true;
+    var seg=document.createElement('span');seg.className='seg';seg.setAttribute('role','group');seg.setAttribute('aria-label','Critère '+(i+1));
+    var y=document.createElement('button');y.type='button';y.className='yes';y.textContent='OUI';y.setAttribute('aria-pressed','true');
+    var n=document.createElement('button');n.type='button';n.className='no';n.textContent='NON';n.setAttribute('aria-pressed','false');
+    function set(v){answers[i]=v;y.setAttribute('aria-pressed',v?'true':'false');n.setAttribute('aria-pressed',v?'false':'true');verdict();}
+    y.addEventListener('click',function(){set(true);});n.addEventListener('click',function(){set(false);});
+    seg.appendChild(y);seg.appendChild(n);li.appendChild(seg);
+  });
+
+  /* matrice 5 x 5 : 11 croisements retenus */
+  var RISK=[['ÉLIG','Éligibilité à l\'activation'],['VAL','Valorisation des coûts internes'],['CUT','Cut-off (démarrage / arrêt)'],['EXIST','Existence et réalité des projets'],['DÉPR','Dépréciation']];
   var ASSERT=['Existence / droits','Exhaustivité','Valorisation / exactitude','Séparation des exercices','Classification / présentation'];
   var SIG={1:'Faible',2:'Surveillé',3:'Modéré',4:'Élevé',5:'Critique'};
   var COMBOS=[
-    {r:0,c:4,s:4,j:'Activer un coût de recherche relève d’un mauvais classement charge / actif : c’est le cœur de l’article 212-3.'},
+    {r:0,c:4,s:4,j:'Activer un coût de recherche relève d\'un mauvais classement charge / actif : c\'est le cœur de l\'article 212-3.'},
     {r:0,c:0,s:4,j:'Le projet franchit-il réellement les six critères cumulatifs pour exister comme actif ?'},
-    {r:0,c:1,s:3,j:'Tous les projets et coûts éligibles sont recensés, et aucun inéligible ne s’y glisse.'},
-    {r:1,c:2,s:5,core:true,j:'Le taux horaire interne et les coûts incorporés déterminent l’exactitude du montant capitalisé. C’est le cœur du mémoire : on audite une estimation, pas une facture.'},
+    {r:0,c:1,s:3,j:'Tous les projets et coûts éligibles sont recensés, et aucun inéligible ne s\'y glisse.'},
+    {r:1,c:2,s:5,core:true,j:'Le taux horaire interne et les coûts incorporés déterminent l\'exactitude du montant capitalisé. C\'est le cœur du mémoire : on audite une estimation, pas une facture.'},
     {r:1,c:1,s:4,j:'Le périmètre des coûts incorporables (frais marginaux directs, art. 213-27) doit être complet et borné.'},
-    {r:2,c:3,s:4,j:'La date de début et d’arrêt de capitalisation (art. 213-10 et 213-25) conditionne le rattachement à l’exercice.'},
-    {r:2,c:2,s:3,j:'Un cut-off erroné fausse le montant capitalisé de l’exercice.'},
+    {r:2,c:3,s:4,j:'La date de début et d\'arrêt de capitalisation (art. 213-10 et 213-25) conditionne le rattachement à l\'exercice.'},
+    {r:2,c:2,s:3,j:'Un cut-off erroné fausse le montant capitalisé de l\'exercice.'},
     {r:3,c:0,s:5,j:'Les heures et coûts imputés correspondent à des travaux réels, rattachables à un livrable.'},
-    {r:3,c:2,s:3,j:'Des heures sans livrable identifiable gonflent la valeur de l’actif.'},
+    {r:3,c:2,s:3,j:'Des heures sans livrable identifiable gonflent la valeur de l\'actif.'},
     {r:4,c:2,s:3,j:'Une valeur nette comptable non dépréciée malgré un indice conduit à une surévaluation (art. 214-1).'},
-    {r:4,c:4,s:2,j:'La constatation et l’information de la perte de valeur doivent être présentées.'}
+    {r:4,c:4,s:2,j:'La constatation et l\'information de la perte de valeur doivent être présentées.'}
   ];
   var grid=document.getElementById('matrix'),ex=document.getElementById('explain');
   var byKey={};COMBOS.forEach(function(k){byKey[k.r+'-'+k.c]=k;});
@@ -455,6 +702,40 @@ footer a{font-weight:600}
       grid.appendChild(cell);
     }
   }
+
+  /* NEP 450 : reprise des règles d'ACTIV Dossier (anomaliesEngine.ts) */
+  function amount(s){s=String(s||'').replace(/\s/g,'').replace(/€/g,'').replace(',','.');var n=parseFloat(s);return isFinite(n)&&n>0?n:0;}
+  function fmt(n){return (n<0?'-':'')+Math.abs(Math.round(n)).toLocaleString('fr-FR')+' €';}
+  var ids=['a1','a2','a3'],dirs=['d1','d2','d3'];
+  var $=function(id){return document.getElementById(id);};
+  function nep(){
+    var sig=amount($('s-sig').value),rem=amount($('s-rem').value);
+    var over=0,under=0,ind=[];
+    ids.forEach(function(id,i){var a=amount($(id).value);if(a<=0)return;if($(dirs[i]).value==='SUR_EVAL')over+=a;else under+=a;if(rem>0&&a>rem)ind.push('A-0'+(i+1));});
+    var gross=over+under,net=over-under;
+    var cumRem=rem>0&&gross>rem,netSig=sig>0&&Math.abs(net)>sig,grossSig=sig>0&&gross>sig;
+    var level='none',title='Aucune anomalie matérielle au regard des seuils.',msg='';
+    if(netSig||grossSig){level='signification';title='Dépassement : anomalies significatives à mentionner.';
+      msg=netSig?'Effet net '+fmt(net)+' au-delà du seuil de signification '+fmt(sig)+'.':'Sans compensation (NEP 450 §A21) : l\'effet brut '+fmt(gross)+' dépasse le seuil de signification '+fmt(sig)+', alors que le net est compensé ('+fmt(net)+').';}
+    else if(cumRem||ind.length){level='remontee';title='Dépassement : à porter à la connaissance de la direction.';
+      msg='Effet cumulé brut '+fmt(gross)+(ind.length?' ou montant individuel':'')+' au-delà du seuil de remontée '+fmt(rem)+'.';}
+    else if(sig===0&&rem===0){title='Seuils non renseignés : qualification indisponible.';msg='Renseignez les seuils de signification et de remontée.';}
+    else msg='Ni le brut ni le net ne franchissent les seuils.';
+    $('r-band').className='result__band '+level;$('r-title').textContent=title;$('r-msg').textContent=msg;
+    $('r-gross').textContent=fmt(gross);$('r-over').textContent=fmt(over);$('r-under').textContent=fmt(under);$('r-net').textContent=fmt(net);
+    var ri=$('r-ind');ri.textContent=ind.length?ind.join(', '):'aucun';ri.className=ind.length?'warn':'';
+  }
+  var PRESETS={
+    ohmlette:{a:['40 000','',''],d:['SOUS_EVAL','SUR_EVAL','SUR_EVAL'],sig:'220 000',rem:'6 000'},
+    compensation:{a:['320 000','300 000',''],d:['SUR_EVAL','SOUS_EVAL','SUR_EVAL'],sig:'250 000',rem:'8 000'},
+    clean:{a:['','',''],d:['SUR_EVAL','SUR_EVAL','SUR_EVAL'],sig:'220 000',rem:'6 000'}
+  };
+  document.querySelectorAll('.presets button').forEach(function(b){b.addEventListener('click',function(){
+    var p=PRESETS[b.getAttribute('data-preset')];ids.forEach(function(id,i){$(id).value=p.a[i];$(dirs[i]).value=p.d[i];});$('s-sig').value=p.sig;$('s-rem').value=p.rem;nep();
+  });});
+  document.getElementById('nep').addEventListener('input',nep);
+  document.getElementById('nep').addEventListener('change',nep);
+  nep();
 })();
 </script>
 </body>

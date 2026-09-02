@@ -16,6 +16,9 @@ Quatre modules enchaînés, orchestrés par un accueil unique :
 | ACTIV Programme | Programme de travail (NEP 330R) |
 | ACTIV Dossier | Qualification des anomalies et des incertitudes, conclusion (NEP 450 / 230 / 265) |
 
+Chaque module exporte son **dossier de travail complet** en Excel (un onglet par écran : saisies,
+justifications, traces de validation, calculs), un PDF et un JSON chiffré.
+
 ## Utilisation
 
 - Ouvrir la page d'accueil (`index.html`) : elle mène à l'accueil ACTIV, point
