@@ -125,6 +125,13 @@ section.s{padding:clamp(48px,7vw,96px) 0}
 .panel{display:none}
 .panel.on{display:block}
 .panel .frame{transform:none}
+.panel.on .frame{animation:panelIn .42s var(--ease) both}
+.panel.on .panel__cap>div{animation:panelIn .42s var(--ease) both}
+.panel.on .panel__cap>div:nth-child(1){animation-delay:.08s}.panel.on .panel__cap>div:nth-child(2){animation-delay:.14s}.panel.on .panel__cap>div:nth-child(3){animation-delay:.2s}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+.tab .ic{transition:background .25s,color .25s,transform .25s var(--ease)}
+.tab.just .ic{animation:tabNudge .3s var(--ease)}
+@keyframes tabNudge{0%{transform:scale(.9)}60%{transform:scale(1.06)}100%{transform:none}}
 .panel__cap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 .panel__cap div{padding:12px 14px;border-radius:12px;background:var(--rail);border:1px solid var(--line);font-size:13.5px;color:var(--ink-2);line-height:1.45}
 .panel__cap b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--bleu);margin-bottom:4px}
@@ -284,6 +291,7 @@ footer a{font-weight:600}
   .node.on .node__line i{animation:none;transform:none}
   .reveal{opacity:1;transform:none;transition:none}
   .btn,.cell,.tab{transition:none}
+  .panel.on .frame,.panel.on .panel__cap>div,.tab.just .ic{animation:none}
 }
 @media print{
   .top,.cta{display:none}
@@ -324,7 +332,6 @@ footer a{font-weight:600}
         <p class="lede">ACTIV enchaîne quatre modules qui suivent la démarche d'audit : l'éligibilité du projet, la cartographie des risques, le programme de travail, puis la documentation des constats. <b>Tout tourne dans le navigateur, sans serveur</b> : aucune donnée ne quitte le poste.</p>
         <div class="cta">
           <a class="btn btn--primary" href="ACTIV.html">Ouvrir l'application <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn--ghost" href="#visite">Voir les écrans</a>
           <span class="hint">Chrome ou Edge recommandé · deux dossiers de démonstration prêts</span>
         </div>
       </div>
@@ -620,8 +627,10 @@ footer a{font-weight:600}
   /* visite guidée : onglets accessibles */
   var tabs=Array.prototype.slice.call(document.querySelectorAll('.tab'));
   function selectTab(tab){
-    tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;
-      var p=document.getElementById(t.getAttribute('aria-controls'));p.classList.toggle('on',on);p.hidden=!on;});
+    tabs.forEach(function(t){var on=t===tab;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;t.classList.remove('just');
+      var p=document.getElementById(t.getAttribute('aria-controls'));
+      if(on){p.hidden=false;p.classList.remove('on');void p.offsetWidth;p.classList.add('on');void tab.offsetWidth;tab.classList.add('just');}
+      else{p.classList.remove('on');p.hidden=true;}});
   }
   tabs.forEach(function(t,i){
     t.addEventListener('click',function(){selectTab(t);});
